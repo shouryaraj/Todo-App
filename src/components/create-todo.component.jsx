@@ -52,8 +52,14 @@ class createToDo extends Component {
         }
 
         axios.post('http://localhost:3000/todos/add', newTodo)
-            .then(res => console.log(res.data));
+            .then(res => console.log(res.data))
+            .catch(
+                function(error){
+                    console.log(error)
+                }
+            )
 
+            
 
         this.setState({
             todo_description: '',

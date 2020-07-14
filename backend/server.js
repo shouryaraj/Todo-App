@@ -11,9 +11,14 @@ let Todo = require('./todo.model');
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/todos', { useUnifiedTopology: true, useNewUrlParser: true })
+const MONGODB_URL = 'mongodb+srv://Raj:Todo123456@todo-app.1otlk.mongodb.net/Todo?retryWrites=true&w=majority'
+//|| 'mongodb://127.0.0.1:27017/todos'
+mongoose.connect(  MONGODB_URL , 
+        { useUnifiedTopology: true, useNewUrlParser: true 
+        })
 const connection = mongoose.connection;
 
+// Listener
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
@@ -38,12 +43,14 @@ todoRoutes.route('/:id').get(function(req, res) {
 todoRoutes.route('/add').post(function(req, res) {
 
     let todo = new Todo(req.body);
+
     todo.save()
         .then(todo => {
            return res.status(200).json({'todo': 'todo added successfully'});
+          
         })
         .catch(err => {
-            res.status(400).send('adding new todo failed');
+            res.status(400).send('Adding new todo failed');
         });
 });
 
