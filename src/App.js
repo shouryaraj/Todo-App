@@ -14,7 +14,7 @@ function App() {
     <Router>
       <header/>
       <div className="container">
-        <h2> MERN-Stack Todo App</h2>
+        {/* <h2> MERN-Stack Todo App</h2> */}
         <div>
           <SideBar/>
         </div>

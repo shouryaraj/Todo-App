@@ -33,6 +33,7 @@ class createToDo extends Component {
             todo_priority: e.target.value
         });
     }
+ 
     onSubmit(e){
         // getting rid off the default behaviour of HTML forum submission
         e.preventDefault();
@@ -60,75 +61,84 @@ class createToDo extends Component {
             todo_priority: '',
             todo_completed: false
         })
+        window.alert("ToDo list Saved")
     }
 
     render (){
         return(
-            <div style={{marginTop: 10}}>
-                <h3>Create New Todo</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className='form-group'>
-                        <label>Description: </label>
-                        <input type="text"
-                        className="form-control"
-                        value={this.state.todo_description}
-                        onChange={this.onChangeTodoDescription}
-                        />
+            <div className="form-div">
+                     <div class="card" id="form-card">
+                         <div class="card-body">
+                           <p style={{fontSize: "200%", textAlign: "center", fontWeight:"bold"}}>Create new</p>
+                    <form onSubmit={this.onSubmit} className="form-input-div">
+                        <div className='form-group'>
+                            <label>Description: </label>
+                            <input type="text"
+                            className="form-control"
+                            value={this.state.todo_description}
+                            onChange={this.onChangeTodoDescription}
+                            required
+                            />
 
 
-                        
+                            
+                        </div>
+                        <div className='form-group' style={{paddingTop: "2%"}}>
+                            <label>Responsible: </label>
+                            <input type="text"
+                            className="form-control"
+                            value={this.state.todo_responsible}
+                            onChange={this.onChangeTodoResponsible}
+                            required
+                            />
+                        </div>
+                    <div className="form-group" style={{paddingTop: "4%"}} >
+                        <div className="form-check form-check-inline"> 
+                            <input  className="form-check-input"
+                                    type="radio"
+                                    name="priorityOptions"
+                                    id="priorityLow"
+                                    value="L"
+                                    checked={this.state.todo_priority === 'L'}
+                                    onChange={this.onChangeTodoPriority} 
+                                    />
+                            <label className="form-check-label"> Low </label>
+
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input  className="form-check-input"
+                                    type="radio"
+                                    name="priorityOptions"
+                                    id="priorityMedium"
+                                    value="M"
+                                    checked={this.state.todo_priority === 'M'}
+                                    onChange={this.onChangeTodoPriority} 
+                                    />
+                            <label className="form-check-label"> Medium </label>
+
+                        </div>
+                        <div className="form-check form-check-inline" >
+                            <input  className="form-check-input"
+                                    type="radio"
+                                    name="priorityOptions"
+                                    id="priorityHigh"
+                                    value="H"
+                                    checked={this.state.todo_priority === 'H'}
+                                    onChange={this.onChangeTodoPriority} 
+                                    />
+                            <label className="form-check-label"> High </label>
+
+                        </div>
+
                     </div>
-                    <div className='form-group'>
-                        <label>Responsible: </label>
-                        <input type="text"
-                        className="form-control"
-                        value={this.state.todo_responsible}
-                        onChange={this.onChangeTodoResponsible}
-                        />
+                    <div className="form-group" style={{marginLeft: "38%", paddingTop: "10%"}}>
+                        <input type="submit" value="Create Todo" className ="btn btn-dark btn-lg" />
                     </div>
-                   <div className="form-group">
-                       <div className="form-check form-check-inline">
-                        <input  className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityLow"
-                                value="Low"
-                                checked={this.state.todo_priority === 'Low'}
-                                onChange={this.onChangeTodoPriority} 
-                                />
-                        <label className="form-check-label"> Low </label>
-
-                       </div>
-                       <div className="form-check form-check-inline">
-                        <input  className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityMedium"
-                                value="Medium"
-                                checked={this.state.todo_priority === 'Medium'}
-                                onChange={this.onChangeTodoPriority} 
-                                />
-                        <label className="form-check-label"> Medium </label>
-
-                       </div>
-                       <div className="form-check form-check-inline">
-                        <input  className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityHigh"
-                                value="High"
-                                checked={this.state.todo_priority === 'High'}
-                                onChange={this.onChangeTodoPriority} 
-                                />
-                        <label className="form-check-label"> High </label>
-
-                       </div>
-
-                   </div>
-                   <div className="form-group">
-                       <input type="submit" value="Create Todo" className ="btn btn-primary" />
-                   </div>
                 </form>
+             </div>
+            </div>
+                
+               
 
             </div>
         )

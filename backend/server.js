@@ -64,7 +64,19 @@ todoRoutes.route('/update/:id').post(function(req, res) {
                 res.status(400).send("Update not possible");
             });
     });
+
 });
+todoRoutes.route('/delete/:id').post(function(req, res){
+    Todo.findByIdAndDelete(req.params.id, function(err, todo) {
+        if (!todo)
+            res.status(404).send('data is not found');
+
+        else{
+            console.log("deleted")
+        }
+       });
+});
+
 
 app.use('/todos', todoRoutes);
 
