@@ -5,6 +5,9 @@ class Delete extends Component{
 
     render(){
         return(
+            <div>
+                <span>delete</span>
+            </div>
             
         )
     }

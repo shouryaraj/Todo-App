@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Delete from './delete.jsx'
 
 
 
@@ -18,11 +19,26 @@ const Todo = props => (
                 {props.todo.todo_priority}
                 </div></div></td>
         <td>
+
             <Link to={"/edit/"+ props.todo._id}><div class="card"><div class="card-body">
             <a class="icon 	fa fa-edit" id="uno" style={{}}></a>
+            
                 </div></div>
                 </Link>
+               
+    
+           
         </td>
+        <td>
+{/* 
+        <div className="remove">
+            <a href="#" onClick={() => remove(id)}>X</a>
+        </div>
+                 */}
+
+
+        </td>
+
         
         <td>
                  <label style={{paddingLeft: "7px"}}>
@@ -74,6 +90,7 @@ class TodoList extends Component {
 
     todoList() {
         return this.state.todos.map(function(currentTodo, i){
+            
             return <Todo todo = {currentTodo} key={i}/>    
         });
     }
