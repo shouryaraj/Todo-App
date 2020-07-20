@@ -111,17 +111,25 @@ th, td {
 
 } 
 .table-div tr td:first-child {
-  width: 80%;
+    width: 80%;
  }
  .table-div tr td:nth-child(2){
       width: 40%;
 
+
  }
+ .table-div tr td:nth-child(4){
+      width: 80%  !important;
+
+ }
+
+ 
 /* #priority{
   width:70% !important;
 } */
 .card{
   width: fixed;
+ 
   
 }
 
@@ -149,5 +157,9 @@ th, td {
 .form-input-div{
   margin-top: 10%;
   font-size: 120%;
+}
+
+.fa fa-trash-o:hover {
+  color: blue;
 }
 

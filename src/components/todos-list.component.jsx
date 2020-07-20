@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Delete from './delete.jsx'
 
 
 
@@ -24,34 +23,36 @@ const Todo = props => {
                         {props.todo.todo_priority}
                         </div></div></td>
                 <td>
+                    <div style={{display: 'flex'}}>
+                        <div class="card">
+                            <div class="card-body" style = {{display: 'flex'}}>
+                                <Link to={"/edit/"+ props.todo._id}>
+                                    <a class="icon 	fa fa-edit" id="uno" style={{paddingRight: '50%'}}></a>
+                                </Link>
+                                <div className="remove" style={{paddingLeft: '40%', paddingRight: '20%'}}>
+                                        <a class='fa fa-trash-o' style={{color:"red"}} onClick={() => props.remove(props.todo._id)}></a>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        {/* <div class="card">
+                            <div class="card-body">
+                             
+                            </div>
+                        </div> */}
 
-                    <Link to={"/edit/"+ props.todo._id}><div class="card"><div class="card-body">
-                    <a class="icon 	fa fa-edit" id="uno" style={{}}></a>
+                    </div>
                     
-                        </div></div>
-                        </Link>
+                       
+                   
+               
+                       
                     
             
                 
                 </td>
-                <td>
-        
-                <div className="remove">
-                    <a href="#" onClick={() => props.remove(props.todo._id)}>X</a>
-                </div>
-                       
-
-
-                </td>
-
                 
-                <td>
-                        <label style={{paddingLeft: "7px"}}>
-                        <input type="checkbox" />
-                        <span></span>
-                        </label>
-                    
-                    </td>
             </tr>
         )}
 
@@ -92,6 +93,13 @@ class TodoList extends Component {
             todo_completed: !this.state.todo_completed
         });
     }
+    async changeHandler(todos) {
+        await this.setState({todos: todos}, () => {
+            console.log(this.state.todos);
+        });
+
+    }
+    
     
     removeRow = (rowId) => {
         // Array.prototype.filter returns new array
@@ -99,12 +107,19 @@ class TodoList extends Component {
         console.log(this.state.todos)
         console.log(rowId)
         const arrayCopy = this.state.todos.filter((row) => row._id !== rowId);
-        this.setState({todos: arrayCopy});
-
+        this.changeHandler(arrayCopy);
+    
+        axios.delete('http://localhost:3000/todos/remove/' + rowId)
+        .then(res => console.log(res.data))
+        .catch(
+            function(error){
+                console.log(error)
+            }
+        )
 
 
         
-        console.log(this.state.todos)
+   
       };
     todoList() {
         return this.state.todos.map((currentTodo, i)=>{

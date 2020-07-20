@@ -73,13 +73,32 @@ todoRoutes.route('/update/:id').post(function(req, res) {
     });
 
 });
-todoRoutes.route('/delete/:id').post(function(req, res){
+
+// todoRoutes.route("/remove/:id").get((req, res) => {
+//     const id = req.params.id;
+//     TodoTask.findByIdAndRemove(id, err => {
+//     if (err) return res.send(500, err);
+//     res.redirect("/");
+//     });
+//     });
+todoRoutes.route('/remove/:id')
+// .get(function(req, res) {
+//     let id = req.params.id;
+//     Todo.findById(id, function(err, todo) {
+//         res.json(todo);
+//     });
+// });
+.delete((req, res) => {
+    console.log(req.params.id)
     Todo.findByIdAndDelete(req.params.id, function(err, todo) {
-        if (!todo)
+        if (!todo){
+            console.log("Hello")
             res.status(404).send('data is not found');
+        }
 
         else{
             console.log("deleted")
+            
         }
        });
 });
