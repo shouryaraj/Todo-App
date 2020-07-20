@@ -5,13 +5,16 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
 const PORT = 3000;
+require('dotenv').config();
+
+const mongoDBKey = process.env.mongoDB;
 
 let Todo = require('./todo.model');
 
 app.use(cors());
 app.use(bodyParser.json());
 
-const MONGODB_URL = 'mongodb+srv://Raj:Todo123456@todo-app.1otlk.mongodb.net/Todo?retryWrites=true&w=majority'
+const MONGODB_URL = `mongodb+srv://Raj:${mongoDBKey}@todo-app.1otlk.mongodb.net/Todo?retryWrites=true&w=majority`
 //|| 'mongodb://127.0.0.1:27017/todos'
 mongoose.connect(  MONGODB_URL , 
         { useUnifiedTopology: true, useNewUrlParser: true 
@@ -98,7 +101,7 @@ todoRoutes.route('/remove/:id')
 
         else{
             console.log("deleted")
-            
+
         }
        });
 });
